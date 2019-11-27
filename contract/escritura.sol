@@ -50,7 +50,7 @@ contract Compra_E_Venda {
         enderecotabeliao = msg.sender;
         valorImovel = _valorImovel;
         
-       }
+    }
     
     function pagarValor() payable public {
         require(msg.sender == enderecoComprador, "Somente comprador pode efetuar o pagamento");
@@ -62,8 +62,9 @@ contract Compra_E_Venda {
     function lavraEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
         if (statusValorPago == true) {
-            enderecoVendedor.transfer(address(this).balance);
             statusEscrituraLavrada = true;
+            enderecoVendedor.transfer(address(this).balance);
         }
     }
+
 }
