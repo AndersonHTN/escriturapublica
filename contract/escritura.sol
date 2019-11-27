@@ -11,11 +11,12 @@ contract Compra_E_Venda {
     string public comprador;
     string public CPFComprador;
     address payable public enderecoComprador;
+    string public descricaoImovel;
     string public matriculaImovel;
     string public cartorioRegistro;
     uint256 public valorImovel;
     bool public statusValorPago;
-    bool public escrituraLavrada;
+    bool public statusEscrituraLavrada;
     
     constructor(
         string memory _tabeliao,
@@ -27,10 +28,12 @@ contract Compra_E_Venda {
         string memory _comprador,
         string memory _CPFComprador,
         address payable _enderecoComprador,
+        string memory _descricaoImovel,
         string memory _matriculaImovel,
         string memory _cartorioRegistro,
         uint256 _valorImovel) 
     public
+    
     {
         tabeliao = _tabeliao;
         livroEscritura = _livroEscritura;
@@ -41,9 +44,11 @@ contract Compra_E_Venda {
         comprador = _comprador;
         CPFComprador = _CPFComprador;
         enderecoComprador = _enderecoComprador;
+        descricaoImovel = _descricaoImovel;
         matriculaImovel = _matriculaImovel;
         cartorioRegistro = _cartorioRegistro;
         enderecotabeliao = msg.sender;
+        valorImovel = _valorImovel;
         
        }
     
@@ -54,11 +59,11 @@ contract Compra_E_Venda {
     }
     
   
-    
     function lavraEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
         if (statusValorPago == true) {
             enderecoVendedor.transfer(address(this).balance);
+            statusEscrituraLavrada = true;
         }
     }
 }
