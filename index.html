@@ -1,1 +1,135 @@
-.
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SMART ESCRITURA - 2º TABELIÃO DE NOTAS DE SÃO PAULO</title>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+</head>
+<body>
+    <h1>SMART ESCRITURA - 2º TABELIÃO DE NOTAS DE SÃO PAULO</h1>
+    <h2>Smart Escritura de Compra e Venda de Imóvel</h2>
+    <div>O endereço da Smart Escritura é: 0x53C34f4897a4111f9299a9b734aD1d5c380a8Ce5</div>
+    <div>A situação de pagamento do valor do imóvel é: <span id="campoStatus">&nbsp;</span></div>
+    <div>A situação de lavratura da escritura é: <span id="campoStatus">&nbsp;</span></div>
+    <div>O valor do imóvel é: <span id="campoValorAluguel">&nbsp;</span></div>
+    <hr>
+    <h1>Dados da Escritura</h1>
+  
+  
+  <section class="corpo" 
+      <div class="conteudo"
+
+            div class="imagem"
+                <div align="center"></section><img src="imagens/logo.svg" alt="logo do 2º Tabelião Notas de São Paulo"/>
+            </div>
+
+            <div class="texto"     
+                <h3 id=tituloform> 
+                <div align="center">Emissão de Certidão</div>
+                </h3>
+                </br>
+            <form>
+                <label for "apresentante"><div align="center">Apresentante
+                </label>
+                <input id="apresentante" type="text"></div>
+                </br>
+                <label for "email">
+                    <div align="center">E-mail
+                </label>
+                <input id="email" type="text"> </div>
+                </br>
+                <label for "cpf">
+                    <div align="center">CPF
+                </label>
+                <input id="cpf" type="number"> </div>
+                </br>
+                <label for "telelfone">
+                    <div align="center">Tel
+                </label>
+                <input id="telelfone" type="number"> </div>
+                </br>
+                <label for "cep">
+                    <div align="center">CEP
+                </label>
+                <input id="cep" type="number"> </div>
+                </br>
+                <label for ="tipodecertidao">
+                    <div align="center">Tipo de Certidão
+                </label>
+                <select id="tipodecertidao">
+                    <option value="certidaodigitada">Certidão Digitada</option>
+                    <option value="apostilamento">Apostilamento</option>
+                    <option value="cartadesentenca">Carta de Sentença</option> </select></div>
+                </select>
+                </br>
+                <label for "livro">
+                    <div align="center">Livro
+                </label>
+                <input id="livro" type="number"></div>
+                </br>
+                <label for "folhainicial">
+                    <div align="center">Folha Inicial
+                </label>
+                <input id="folhainicial" type="number"></div> 
+                </br>
+                <label for "folhafinal">
+                    <div align="center">Folha Final
+                </label>
+                <input id="folhafinal" type="number"> </div>
+                </br>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <form action="#" method="get" id="frmStatus" name="frmStatus" onsubmit="registrarMudancaStatus(); return false;">
+        <div>
+            <label for="txtStatusPagamentoAluguel">Informe o novo Status: </label>
+            <input type="text" name="txtStatusPagamentoAluguel" id="txtStatusPagamentoAluguel" maxlength="8">
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <button type="submit">Registrar Novo Status</button>
+        </div>
+        <div><br><hr></div>
+        <div id="caixaStatusTx">
+            &nbsp;
+        </div>
+    </form>
+    <p>&nbsp;</p>
+    <script charset="utf-8"  src="https://cdn.ethers.io/scripts/ethers-v4.min.js" type="text/javascript"></script>
+    <script src="javascript/abi.js"></script>    
+    <script src="javascript/blockchain.js"></script>    
+    <script>
+        var status;
+        var campoStatus = document.getElementById("campoStatus"); 
+        var campoValorAluguel = document.getElementById("campoValorAluguel");
+        contrato.statusPagamentoAluguel()
+            .then( (resultado) => {
+                campoStatus.innerHTML = resultado;
+            })
+            .catch( (err) => {
+                console.error(err);
+                campoStatus.innerHTML = err;
+            });   
+        contrato.valorAluguel()
+            .then( (valorAluguel) => {
+                campoValorAluguel.innerHTML = valorAluguel;
+            })
+            .catch( (err) => {
+                console.error(err);
+                campoValorAluguel.innerHTML = err;
+            });                                       
+    </script>
+</script>
+</body>
+</html>
