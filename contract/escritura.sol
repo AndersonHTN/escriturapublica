@@ -59,7 +59,7 @@ contract Compra_E_Venda {
     }
     
   
-    function lavraEscritura() public {
+    function lavrarEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
         if (statusValorPago == true) {
             statusEscrituraLavrada = true;
