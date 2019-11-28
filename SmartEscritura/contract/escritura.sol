@@ -18,6 +18,7 @@ contract Compra_E_Venda {
     bool public statusValorPagoAssinadaComprador;
     bool public statusEscrituraLavrada;
     bool public statusAssinadaVendedor;
+    uint public balance;
     
     constructor(
         string memory _tabeliao,
