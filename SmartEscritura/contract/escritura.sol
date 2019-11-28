@@ -61,7 +61,6 @@ contract Compra_E_Venda {
     
     function Assinar() payable public {
         require(msg.sender == enderecoVendedor, "Somente vendedor pode assinar");
-        require(msg.value >= valorImovel, "Valor insuficiente");
         statusAssinadaVendedor = true;
         
     }
