@@ -15,8 +15,9 @@ contract Compra_E_Venda {
     string public matriculaImovel;
     string public cartorioRegistro;
     uint256 public valorImovel;
-    bool public statusValorPago;
+    bool public statusValorPagoAssinadaComprador;
     bool public statusEscrituraLavrada;
+    bool public statusAssinadaVendedor;
     
     constructor(
         string memory _tabeliao,
@@ -52,16 +53,23 @@ contract Compra_E_Venda {
         
     }
     
-    function pagarValor() payable public {
-        require(msg.sender == enderecoComprador, "Somente comprador pode efetuar o pagamento");
+    function AssinarPagar() payable public {
+        require(msg.sender == enderecoComprador, "Somente comprador pode efetuar o pagamento e assinar");
         require(msg.value >= valorImovel, "Valor insuficiente");
-        statusValorPago = true;
+        statusValorPagoAssinadaComprador = true;
+    }
+    
+    function Assinar() payable public {
+        require(msg.sender == enderecoVendedor, "Somente vendedor pode assinar");
+        require(msg.value >= valorImovel, "Valor insuficiente");
+        statusAssinadaVendedor = true;
+        
     }
     
   
     function lavrarEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
-        if (statusValorPago == true) {
+        if (statusValorPagoAssinadaComprador == true && statusAssinadaVendedor == true){
             statusEscrituraLavrada = true;
             enderecoVendedor.transfer(address(this).balance);
         }
