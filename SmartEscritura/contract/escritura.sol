@@ -16,8 +16,9 @@ contract Compra_E_Venda {
     string public cartorioRegistro;
     uint256 public valorImovel;
     bool public statusValorPagoAssinadaComprador;
-    bool public statusEscrituraLavrada;
     bool public statusAssinadaVendedor;
+    bool public statusEscrituraDeclaradaIncompleta;
+    bool public statusEscrituraLavrada;
     
     constructor(
         string memory _tabeliao,
@@ -71,6 +72,14 @@ contract Compra_E_Venda {
         return address(this).balance;
     }
    
+    function declaraIncompleta() public {
+        require(msg.sender == enderecotabeliao, "Somente o tabeliao pode declarar a escritura incompleta");
+        if (statusValorPagoAssinadaComprador == true && statusAssinadaVendedor == false){
+            statusEscrituraDeclaradaIncompleta = true;
+            enderecoComprador.transfer(address(this).balance);
+        }
+   
+    }
     function lavrarEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
         if (statusValorPagoAssinadaComprador == true && statusAssinadaVendedor == true){
