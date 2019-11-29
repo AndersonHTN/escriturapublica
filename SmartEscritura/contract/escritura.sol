@@ -18,7 +18,6 @@ contract Compra_E_Venda {
     bool public statusValorPagoAssinadaComprador;
     bool public statusEscrituraLavrada;
     bool public statusAssinadaVendedor;
-    uint public balance;
     
     constructor(
         string memory _tabeliao,
@@ -51,6 +50,7 @@ contract Compra_E_Venda {
         cartorioRegistro = _cartorioRegistro;
         enderecotabeliao = msg.sender;
         valorImovel = _valorImovel;
+       
         
     }
     
@@ -66,7 +66,11 @@ contract Compra_E_Venda {
         
     }
     
-  
+    
+    function valorDepositado() public view returns(uint256) {
+        return address(this).balance;
+    }
+   
     function lavrarEscritura() public {
         require(msg.sender == enderecotabeliao, "Somente o tabeliao pode lavrar a escritura");
         if (statusValorPagoAssinadaComprador == true && statusAssinadaVendedor == true){
@@ -76,4 +80,3 @@ contract Compra_E_Venda {
     }
 
 }
-
